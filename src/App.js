@@ -8,6 +8,7 @@ import SignupPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import EditProfilePage from "./pages/EditProfilePage/EditProfilePage";
 
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
@@ -27,6 +28,16 @@ function App() {
             <IsPrivate>
               {" "}
               <ProfilePage />{" "}
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/profile/edit"
+          element={
+            <IsPrivate>
+              {" "}
+              <EditProfilePage />{" "}
             </IsPrivate>
           }
         />

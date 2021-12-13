@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
-// import { toast } from "react-toastify";
 
 import fileService from "../../services/file.service";
 
@@ -60,10 +59,9 @@ function AddProductsPage() {
       description,
     };
 
-    console.log(body);
+    //console.log(body);
 
     await axios.post(`${process.env.REACT_APP_SERVER_URL}/products/add`, body);
-    // toast.success("Product created");
     console.log("product created");
     navigate("/products");
   };

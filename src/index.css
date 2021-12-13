@@ -151,25 +151,29 @@ nav li {
   line-height: 3.7rem;
 }
 
-.signup-user-form {
+.signup-user-form,
+.silogingnup-user-form {
   display: flex;
   flex-direction: column;
 }
 
-.signup-user-input {
+.signup-user-input,
+.login-user-input {
   width: 100%;
   border-radius: 0.3rem;
   border-style: solid;
-  border: 1px solid #a8a3eb;
+  border: 1px solid #85c7ec;
 }
 
-.signup-user-box {
+.signup-user-box,
+.login-user-box {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.signup-user-box label {
+.signup-user-box label,
+.login-user-box label {
   color: white;
 }
 
@@ -224,5 +228,92 @@ nav li {
 }
 
 .signup-user-picture {
-  background-color: #a8a3eb;
+  background-color: #85c7ec;
+}
+
+.edit-user {
+  width: 80%;
+}
+
+.edit-user-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-user-box label {
+  color: white;
+}
+
+.edit-user-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-user-input {
+  width: 80%;
+  border-radius: 0.3rem;
+  border-style: solid;
+  border: 1px solid #85c7ec;
+}
+
+.edit-user-picture {
+  background-color: #85c7ec;
+}
+
+.r-edit {
+  margin-left: 30%;
+}
+
+.h1-edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 5%;
+  margin-top: 0;
+  padding-top: 5%;
+}
+
+.regular-bg {
+  width: 100%;
+  min-height: 100%;
+  background-image: url("./background-blue.png");
+  background-position: 40% 100%;
+  background-size: cover;
+}
+
+.login-user-left-container {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  padding: 5rem 6rem 5rem 6rem;
+  margin-left: 40%;
+  background-color: black;
+  height: 100%;
+}
+
+.login-user-right-container {
+  width: 100%;
+  min-height: 100%;
+  background-image: url("./background-blue.png");
+  background-position: 30% 100%;
+  background-size: cover;
+}
+
+.login-user-left-container h2 {
+  color: rgb(142, 179, 247);
+  font-size: 3rem;
+  width: 30%;
+  font-family: "Karla", sans-serif;
+  font-weight: 700;
+  padding-bottom: 2rem;
+  line-height: 3.7rem;
+}
+
+.login-user-left-container p,
+.login-user-left-container a {
+  color: white;
 }

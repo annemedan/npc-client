@@ -1,10 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-//import Fade from "react-reveal/Fade";
 
 import authService from "../../services/auth.service";
-
 import fileService from "../../services/file.service";
 
 function SignupPage(props) {
@@ -12,6 +10,8 @@ function SignupPage(props) {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [storeName, setStoreName] = useState("");
+  const [bio, setBio] = useState("");
   const [address, setAddress] = useState("");
   const [postCode, setPostCode] = useState("");
   const [city, setCity] = useState("");
@@ -31,6 +31,8 @@ function SignupPage(props) {
   const handlePostCode = (e) => setPostCode(e.target.value);
   const handleCity = (e) => setCity(e.target.value);
   const handlePhoneNumber = (e) => setPhoneNumber(e.target.value);
+  const handleStoreName = (e) => setStoreName(e.target.value);
+  const handleBio = (e) => setBio(e.target.value);
 
   const handleFileUpload = async (event) => {
     try {
@@ -47,15 +49,17 @@ function SignupPage(props) {
     }
   };
 
-  const handleSignupSubmit = async (e) => {
+  const handleSignupSubmit = async (event) => {
     try {
-      e.preventDefault();
+      event.preventDefault();
       // Create an object representing the request body
       const requestBody = {
         email,
         password,
         firstName,
         lastName,
+        storeName,
+        bio,
         address,
         city,
         postCode,
@@ -63,10 +67,10 @@ function SignupPage(props) {
         isStore,
       };
 
+      //console.log("requestBody on signup/ front end", requestBody);
+
       const authToken = localStorage.getItem("authToken");
-      await axios.post("http://localhost:5005/auth/signup", requestBody, {
-        headers: { Authorization: `Bearer ${authToken}` },
-      });
+      await axios.post("http://localhost:5005/auth/signup", requestBody);
 
       // or with a service
       // await authService.signup(requestBody);
@@ -79,276 +83,291 @@ function SignupPage(props) {
     }
   };
 
-  return (
-    // ! STILL NEED TO ADD THE OTHER SIGNUP SPACES
-    isStore ? (
-      <div className="signup-user">
-        {/* <Fade right> */}
-        <div className="signup-user-right-container"></div>
-        <div className="signup-user-left-container col-md-6 r-store">
-          <h2 className="r-store-h2">Register as a store!</h2>
+  return isStore ? (
+    <div className="signup-user">
+      <div className="signup-user-right-container"></div>
+      <div className="signup-user-left-container col-md-6 r-store">
+        <h2 className="r-store-h2">Register as a store!</h2>
 
-          <form onSubmit={handleSignupSubmit} className="signup-user-form">
-            <span className="signup-user-toggle">
-              <label className="col-md-9 toggle switch">
-                Do you want to sell your goods?
-              </label>
-              <input
-                type="checkbox"
-                checked={isStore}
-                name="isStore"
-                onChange={() => setIsStore(!isStore)}
-                className="signup-user-input"
-              />
-              <span class="slider round"></span>
-            </span>
+        <form onSubmit={handleSignupSubmit} className="signup-user-form">
+          <span className="signup-user-toggle">
+            <label className="col-md-9 toggle switch">
+              Do you want to sell your goods?
+            </label>
+            <input
+              type="checkbox"
+              checked={isStore}
+              name="isStore"
+              onChange={() => setIsStore(!isStore)}
+              className="signup-user-input"
+            />
+            <span class="slider round"></span>
+          </span>
 
-            <span className="row">
-              <span className="signup-user-box col-md-6">
-                <label>First Name</label>
-                <input
-                  type="text"
-                  onChange={handleFirstName}
-                  name="firstName"
-                  value={firstName}
-                  className="signup-user-input"
-                />
-              </span>
+          <span className="signup-user-box col-md-6">
+            <label>Store Name</label>
+            <input
+              type="text"
+              onChange={handleStoreName}
+              name="storeName"
+              value={storeName}
+              className="signup-user-input"
+            />
+          </span>
 
-              <span className="signup-user-box col-md-6">
-                <label>Last Name</label>
-                <input
-                  type="text"
-                  onChange={handleLastName}
-                  name="lastName"
-                  value={lastName}
-                  className="signup-user-input"
-                />
-              </span>
-            </span>
+          <span className="signup-user-box col-md-6">
+            <label>Bio:</label>
+            <input
+              type="text"
+              onChange={handleBio}
+              name="bio"
+              value={bio}
+              className="signup-user-input"
+            />
+          </span>
 
-            <span className="signup-user-box">
-              <label>Email</label>
+          <span className="row">
+            <span className="signup-user-box col-md-6">
+              <label>First Name</label>
               <input
                 type="text"
-                onChange={handleEmail}
-                name="email"
-                value={email}
+                onChange={handleFirstName}
+                name="firstName"
+                value={firstName}
                 className="signup-user-input"
               />
             </span>
 
-            <span className="signup-user-box">
-              <label>Password</label>
+            <span className="signup-user-box col-md-6">
+              <label>Last Name</label>
               <input
                 type="text"
-                onChange={handlePassword}
-                name="password"
-                value={password}
+                onChange={handleLastName}
+                name="lastName"
+                value={lastName}
                 className="signup-user-input"
               />
             </span>
+          </span>
 
-            <span className="signup-user-box">
-              <label>Address</label>
+          <span className="signup-user-box">
+            <label>Email</label>
+            <input
+              type="text"
+              onChange={handleEmail}
+              name="email"
+              value={email}
+              className="signup-user-input"
+            />
+          </span>
+
+          <span className="signup-user-box">
+            <label>Password</label>
+            <input
+              type="text"
+              onChange={handlePassword}
+              name="password"
+              value={password}
+              className="signup-user-input"
+            />
+          </span>
+
+          <span className="signup-user-box">
+            <label>Address</label>
+            <input
+              type="text"
+              onChange={handleAddress}
+              name="address"
+              value={address}
+              className="signup-user-input"
+            />
+          </span>
+
+          <span className="row">
+            <span className="signup-user-box col-md-6">
+              <label>PostCode</label>
               <input
                 type="text"
-                onChange={handleAddress}
-                name="address"
-                value={address}
+                onChange={handlePostCode}
+                name="postCode"
+                value={postCode}
                 className="signup-user-input"
               />
             </span>
-
-            <span className="row">
-              <span className="signup-user-box col-md-6">
-                <label>PostCode</label>
-                <input
-                  type="text"
-                  onChange={handlePostCode}
-                  name="postCode"
-                  value={postCode}
-                  className="signup-user-input"
-                />
-              </span>
-              <span className="signup-user-box col-md-6">
-                <label>City</label>
-                <input
-                  type="text"
-                  onChange={handleCity}
-                  name="city"
-                  value={city}
-                  className="signup-user-input"
-                />
-              </span>
-            </span>
-
-            <span className="signup-user-box">
-              <label>Phone Number</label>
+            <span className="signup-user-box col-md-6">
+              <label>City</label>
               <input
-                type="number"
-                onChange={handlePhoneNumber}
-                name="phoneNumber"
-                value={phoneNumber}
+                type="text"
+                onChange={handleCity}
+                name="city"
+                value={city}
                 className="signup-user-input"
               />
             </span>
+          </span>
 
-            <span className="signup-user-box">
-              <input
-                type="file"
-                onChange={handleFileUpload}
-                className="signup-user-picture"
-              />
-            </span>
+          <span className="signup-user-box">
+            <label>Phone Number</label>
+            <input
+              type="number"
+              onChange={handlePhoneNumber}
+              name="phoneNumber"
+              value={phoneNumber}
+              className="signup-user-input"
+            />
+          </span>
 
-            <span className="signup-user-buttons r-store-buttons">
-              <button type="submit" size="lg">
-                Sign up
-              </button>{" "}
-            </span>
-          </form>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <span className="signup-user-box">
+            <input
+              type="file"
+              onChange={handleFileUpload}
+              className="signup-user-picture"
+            />
+          </span>
 
-          <p>Already have account?</p>
-          <Link to={"/login"}> Login</Link>
-        </div>
-        {/* </Fade> */}
+          <span className="signup-user-buttons r-store-buttons">
+            <button type="submit" size="lg">
+              Sign up
+            </button>{" "}
+          </span>
+        </form>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+        <p>Already have account?</p>
+        <Link to={"/login"}> Login</Link>
       </div>
-    ) : (
-      <div className="signup-user">
-        {/* <Fade left> */}
-        <div className="signup-user-right-container"></div>
-        <div className="signup-user-left-container col-md-6 r-store">
-          <h2 className="r-store-h2">Let's shop!</h2>
+    </div>
+  ) : (
+    <div className="signup-user">
+      <div className="signup-user-right-container"></div>
+      <div className="signup-user-left-container col-md-6 r-store">
+        <h2 className="r-store-h2">Let's shop!</h2>
 
-          <form onSubmit={handleSignupSubmit} className="signup-user-form">
-            <span className="signup-user-toggle">
-              <label className="col-md-9 toggle switch">
-                Are you actually a seller?
-              </label>
-              <input
-                type="checkbox"
-                checked={isStore}
-                name="isStore"
-                onChange={() => setIsStore(!isStore)}
-                className="signup-user-input"
-              />
-              <span class="slider round"></span>
-            </span>
+        <form onSubmit={handleSignupSubmit} className="signup-user-form">
+          <span className="signup-user-toggle">
+            <label className="col-md-9 toggle switch">
+              Are you actually a seller?
+            </label>
+            <input
+              type="checkbox"
+              checked={isStore}
+              name="isStore"
+              onChange={() => setIsStore(!isStore)}
+              className="signup-user-input"
+            />
+            <span class="slider round"></span>
+          </span>
 
-            <span className="row">
-              <span className="signup-user-box col-md-6">
-                <label>First Name</label>
-                <input
-                  type="text"
-                  onChange={handleFirstName}
-                  name="firstName"
-                  value={firstName}
-                  className="signup-user-input"
-                />
-              </span>
-
-              <span className="signup-user-box col-md-6">
-                <label>Last Name</label>
-                <input
-                  type="text"
-                  onChange={handleLastName}
-                  name="lastName"
-                  value={lastName}
-                  className="signup-user-input"
-                />
-              </span>
-            </span>
-
-            <span className="signup-user-box">
-              <label>Email</label>
+          <span className="row">
+            <span className="signup-user-box col-md-6">
+              <label>First Name</label>
               <input
                 type="text"
-                onChange={handleEmail}
-                name="email"
-                value={email}
+                onChange={handleFirstName}
+                name="firstName"
+                value={firstName}
                 className="signup-user-input"
               />
             </span>
 
-            <span className="signup-user-box">
-              <label>Password</label>
+            <span className="signup-user-box col-md-6">
+              <label>Last Name</label>
               <input
                 type="text"
-                onChange={handlePassword}
-                name="password"
-                value={password}
+                onChange={handleLastName}
+                name="lastName"
+                value={lastName}
                 className="signup-user-input"
               />
             </span>
+          </span>
 
-            <span className="signup-user-box">
-              <label>Address</label>
+          <span className="signup-user-box">
+            <label>Email</label>
+            <input
+              type="text"
+              onChange={handleEmail}
+              name="email"
+              value={email}
+              className="signup-user-input"
+            />
+          </span>
+
+          <span className="signup-user-box">
+            <label>Password</label>
+            <input
+              type="text"
+              onChange={handlePassword}
+              name="password"
+              value={password}
+              className="signup-user-input"
+            />
+          </span>
+
+          <span className="signup-user-box">
+            <label>Address</label>
+            <input
+              type="text"
+              onChange={handleAddress}
+              name="address"
+              value={address}
+              className="signup-user-input"
+            />
+          </span>
+
+          <span className="row">
+            <span className="signup-user-box col-md-6">
+              <label>PostCode</label>
               <input
                 type="text"
-                onChange={handleAddress}
-                name="address"
-                value={address}
+                onChange={handlePostCode}
+                name="postCode"
+                value={postCode}
                 className="signup-user-input"
               />
             </span>
-
-            <span className="row">
-              <span className="signup-user-box col-md-6">
-                <label>PostCode</label>
-                <input
-                  type="text"
-                  onChange={handlePostCode}
-                  name="postCode"
-                  value={postCode}
-                  className="signup-user-input"
-                />
-              </span>
-              <span className="signup-user-box col-md-6">
-                <label>City</label>
-                <input
-                  type="text"
-                  onChange={handleCity}
-                  name="city"
-                  value={city}
-                  className="signup-user-input"
-                />
-              </span>
-            </span>
-
-            <span className="signup-user-box">
-              <label>Phone Number</label>
+            <span className="signup-user-box col-md-6">
+              <label>City</label>
               <input
-                type="number"
-                onChange={handlePhoneNumber}
-                name="phoneNumber"
-                value={phoneNumber}
+                type="text"
+                onChange={handleCity}
+                name="city"
+                value={city}
                 className="signup-user-input"
               />
             </span>
-            <span className="signup-user-box">
-              <input
-                type="file"
-                onChange={handleFileUpload}
-                className="signup-user-picture"
-              />
-            </span>
-            <span className="signup-user-buttons r-store-buttons">
-              <button type="submit" size="lg">
-                Sign up
-              </button>{" "}
-            </span>
-          </form>
+          </span>
 
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <span className="signup-user-box">
+            <label>Phone Number</label>
+            <input
+              type="number"
+              onChange={handlePhoneNumber}
+              name="phoneNumber"
+              value={phoneNumber}
+              className="signup-user-input"
+            />
+          </span>
+          <span className="signup-user-box">
+            <input
+              type="file"
+              onChange={handleFileUpload}
+              className="signup-user-picture"
+            />
+          </span>
+          <span className="signup-user-buttons r-store-buttons">
+            <button type="submit" size="lg">
+              Sign up
+            </button>{" "}
+          </span>
+        </form>
 
-          <p>Already have account?</p>
-          <Link to={"/login"}> Login</Link>
-        </div>
-        {/* </Fade> */}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+        <p>Already have account?</p>
+        <Link to={"/login"}> Login</Link>
       </div>
-    )
+    </div>
   );
 }
 
