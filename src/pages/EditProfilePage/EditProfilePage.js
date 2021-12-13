@@ -5,7 +5,6 @@ import axios from "axios";
 import fileService from "../../services/file.service";
 
 function EditProfilePage() {
-  const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
@@ -25,36 +24,50 @@ function EditProfilePage() {
   let storeAuth;
   if (user) {
     storeAuth = user.isStore;
-    console.log(" isStore confirmation ", storeAuth);
   }
-  //console.log("user in edit", user);
 
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       try {
-  //         const response = await axios.get(
-  //           "http://localhost:5005/api/users/profile"
-  //         );
-  //         const theProfile = response.data;
-  //         console.log("theProfile", theProfile);
-  //         // setTitle(oneProject.title);
-  //         // setDescription(oneProject.description);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     };
+  console.log(
+    "user in the edit profile page - before axios fetch the data",
+    user
+  );
 
-  //     fetchData();
-  //   }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const authToken = localStorage.getItem("authToken");
+        const response = await axios.get(
+          "http://localhost:5005/api/users/profile",
+          { headers: { Authorization: `Bearer ${authToken}` } }
+        );
 
-  const handleEmail = (e) => setEmail(e.target.value);
-  //    const handlePassword = (e) => setPassword(e.target.value);
+        const theProfile = response.data;
+        console.log("theProfile", theProfile);
+
+        setStoreName(theProfile.storeName);
+        setBio(theProfile.bio);
+        setFirstName(theProfile.firstName);
+        setLastName(theProfile.lastName);
+        setAddress(theProfile.address);
+        setPostCode(theProfile.postCode);
+        setCity(theProfile.city);
+        setPhoneNumber(theProfile.phoneNumber);
+        setImageUrl(theProfile.image);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const handleFirstName = (e) => setFirstName(e.target.value);
   const handleLastName = (e) => setLastName(e.target.value);
   const handleAddress = (e) => setAddress(e.target.value);
   const handlePostCode = (e) => setPostCode(e.target.value);
   const handleCity = (e) => setCity(e.target.value);
   const handlePhoneNumber = (e) => setPhoneNumber(e.target.value);
+  const handleStoreName = (e) => setStoreName(e.target.value);
+  const handleBio = (e) => setBio(e.target.value);
 
   const handleFileUpload = async (event) => {
     try {
@@ -76,13 +89,15 @@ function EditProfilePage() {
       event.preventDefault();
       // Create an object representing the request body
       const updatedProfile = {
-        email,
         firstName,
         lastName,
+        storeName,
+        bio,
         address,
         city,
         postCode,
         image: imageUrl,
+        phoneNumber,
       };
 
       const authToken = localStorage.getItem("authToken");
@@ -91,7 +106,8 @@ function EditProfilePage() {
         updatedProfile,
         {
           headers: { Authorization: `Bearer ${authToken}` },
-        }
+        },
+        { new: true } //! not sure if this should be here
       );
 
       // If the request is successful navigate to login page
@@ -102,14 +118,14 @@ function EditProfilePage() {
     }
   };
 
-  const deleteProfile = async (event) => {
-    try {
-      axios.delete("http://localhost:5005/api/users/profile/delete");
-      navigate("/signup");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //   const deleteProfile = async (event) => {
+  //     try {
+  //       axios.delete("http://localhost:5005/api/users/profile/delete");
+  //       navigate("/signup");
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
   return storeAuth ? (
     <div className="regular-bg">
@@ -125,7 +141,7 @@ function EditProfilePage() {
                   <label>Store Name</label>
                   <input
                     type="text"
-                    onChange={() => {}}
+                    onChange={handleStoreName}
                     name="storeName"
                     value={storeName}
                     placeholder={user.storeName}
@@ -137,7 +153,7 @@ function EditProfilePage() {
                   <label>Bio</label>
                   <input
                     type="text"
-                    onChange={() => {}}
+                    onChange={handleBio}
                     name="bio"
                     value={bio}
                     placeholder={user.bio}
@@ -149,7 +165,7 @@ function EditProfilePage() {
                   <label>First Name</label>
                   <input
                     type="text"
-                    onChange={() => {}}
+                    onChange={handleFirstName}
                     name="firstName"
                     value={firstName}
                     placeholder={user.firstName}
@@ -161,7 +177,7 @@ function EditProfilePage() {
                   <label>Last Name</label>
                   <input
                     type="text"
-                    onChange={() => {}}
+                    onChange={handleLastName}
                     name="lastName"
                     value={lastName}
                     placeholder={user.lastName}
@@ -171,22 +187,10 @@ function EditProfilePage() {
               </span>
 
               <span className="edit-user-box">
-                <label>Email</label>
-                <input
-                  type="text"
-                  onChange={() => {}}
-                  name="email"
-                  value={email}
-                  placeholder={user.email}
-                  className="edit-user-input"
-                />
-              </span>
-
-              <span className="edit-user-box">
                 <label>Address</label>
                 <input
                   type="text"
-                  onChange={() => {}}
+                  onChange={handleAddress}
                   name="address"
                   value={address}
                   placeholder={user.address}
@@ -199,7 +203,7 @@ function EditProfilePage() {
                   <label>PostCode</label>
                   <input
                     type="text"
-                    onChange={() => {}}
+                    onChange={handlePostCode}
                     name="postCode"
                     value={postCode}
                     placeholder={user.postCode}
@@ -210,7 +214,7 @@ function EditProfilePage() {
                   <label>City</label>
                   <input
                     type="text"
-                    onChange={() => {}}
+                    onChange={handleCity}
                     name="city"
                     value={city}
                     placeholder={user.city}
@@ -223,7 +227,7 @@ function EditProfilePage() {
                 <label>Phone Number</label>
                 <input
                   type="number"
-                  onChange={() => {}}
+                  onChange={handlePhoneNumber}
                   name="phoneNumber"
                   value={phoneNumber}
                   placeholder={user.phoneNumber}
@@ -245,11 +249,11 @@ function EditProfilePage() {
                 </button>{" "}
               </span>
 
-              <span className="edit-user-buttons r-store-buttons">
+              {/* <span className="edit-user-buttons r-store-buttons">
                 <button onClick={deleteProfile} size="lg">
                   Delete Profile
                 </button>{" "}
-              </span>
+              </span> */}
             </form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
           </div>
@@ -270,7 +274,7 @@ function EditProfilePage() {
                   <label>First Name</label>
                   <input
                     type="text"
-                    onChange={() => {}}
+                    onChange={handleFirstName}
                     name="firstName"
                     value={firstName}
                     placeholder={user.firstName}
@@ -282,7 +286,7 @@ function EditProfilePage() {
                   <label>Last Name</label>
                   <input
                     type="text"
-                    onChange={() => {}}
+                    onChange={handleLastName}
                     name="lastName"
                     value={lastName}
                     placeholder={user.lastName}
@@ -292,22 +296,10 @@ function EditProfilePage() {
               </span>
 
               <span className="edit-user-box">
-                <label>Email</label>
-                <input
-                  type="text"
-                  onChange={() => {}}
-                  name="email"
-                  value={email}
-                  placeholder={user.email}
-                  className="edit-user-input"
-                />
-              </span>
-
-              <span className="edit-user-box">
                 <label>Address</label>
                 <input
                   type="text"
-                  onChange={() => {}}
+                  onChange={handleAddress}
                   name="address"
                   value={address}
                   placeholder={user.address}
@@ -320,7 +312,7 @@ function EditProfilePage() {
                   <label>PostCode</label>
                   <input
                     type="text"
-                    onChange={() => {}}
+                    onChange={handlePostCode}
                     name="postCode"
                     value={postCode}
                     placeholder={user.postCode}
@@ -331,7 +323,7 @@ function EditProfilePage() {
                   <label>City</label>
                   <input
                     type="text"
-                    onChange={() => {}}
+                    onChange={handleCity}
                     name="city"
                     value={city}
                     placeholder={user.city}
@@ -344,7 +336,7 @@ function EditProfilePage() {
                 <label>Phone Number</label>
                 <input
                   type="number"
-                  onChange={() => {}}
+                  onChange={handlePhoneNumber}
                   name="phoneNumber"
                   value={phoneNumber}
                   placeholder={user.phoneNumber}
@@ -366,11 +358,11 @@ function EditProfilePage() {
                 </button>{" "}
               </span>
 
-              <span className="edit-user-buttons r-store-buttons">
+              {/* <span className="edit-user-buttons r-store-buttons">
                 <button onClick={deleteProfile} size="lg">
                   Delete Profile
                 </button>{" "}
-              </span>
+              </span> */}
             </form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
           </div>

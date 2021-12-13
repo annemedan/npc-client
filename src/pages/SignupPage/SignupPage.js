@@ -63,6 +63,7 @@ function SignupPage(props) {
         address,
         city,
         postCode,
+        phoneNumber,
         image: imageUrl,
         isStore,
       };

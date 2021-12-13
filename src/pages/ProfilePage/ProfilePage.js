@@ -5,7 +5,7 @@ import { useContext } from "react";
 function ProfilePage() {
   const { user } = useContext(AuthContext);
 
-  console.log("user on profilepage", user);
+  console.log("user in profile page", user);
 
   return (
     <div className="regular-bg">
