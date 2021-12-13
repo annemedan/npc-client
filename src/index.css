@@ -16,6 +16,7 @@ select {
   margin: 5px;
   font-size: 18px;
   height: 40px;
+  border-radius: 5%;
 }
 
 label {
@@ -32,12 +33,12 @@ textarea {
 }
 
 nav {
-  background: #515f7d;
+  background: black;
   color: white;
   padding: 0px 20px;
   box-shadow: 0px 1px 2px gray;
   width: 100%;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   padding: 5px;
 }
 
@@ -126,4 +127,102 @@ nav li {
   border-radius: 35px;
   border: 2px solid black;
   background-color: rgba(255, 255, 255, 0.3);
+}
+
+/*_SignUp_________________________________*/
+.signup-user {
+  display: flex;
+}
+
+.signup-user-left-container {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  padding: 5rem 6rem 5rem 6rem;
+}
+
+.signup-user-left-container h2 {
+  color: rgb(142, 179, 247);
+  font-size: 4rem;
+  width: 25vw;
+  font-family: "Karla", sans-serif;
+  font-weight: 700;
+  padding-bottom: 2rem;
+  line-height: 3.7rem;
+}
+
+.signup-user-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-user-input {
+  width: 100%;
+  border-radius: 0.3rem;
+  border-style: solid;
+  border: 1px solid #a8a3eb;
+}
+
+.signup-user-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.signup-user-box label {
+  color: white;
+}
+
+.signup-user-toggle {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.signup-user-toggle .toggle {
+  color: darkgrey;
+  font-size: 1.5rem;
+  font-family: "Karla", sans-serif;
+  font-weight: 700;
+}
+
+.signup-user-buttons {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+  padding-top: 3.5rem;
+  justify-content: space-between;
+}
+
+.signup-user-buttons button {
+  border-radius: 5%;
+  width: 10rem;
+}
+
+.signup-user-buttons .signup-provider {
+  margin-right: 5rem;
+}
+
+.signup-user-right-container {
+  width: 100%;
+  min-height: 100%;
+  background-image: url("./background-blue.png");
+  background-position: 25% 100%;
+  background-size: cover;
+}
+
+.r-store-h2 {
+  width: 15rem;
+}
+
+.r-store {
+  background-color: black;
+}
+
+.r-store-buttons {
+  padding-top: 2rem;
+}
+
+.signup-user-picture {
+  background-color: #a8a3eb;
 }
