@@ -70,7 +70,7 @@ function SignupPage(props) {
 
       //console.log("requestBody on signup/ front end", requestBody);
 
-      //const authToken = localStorage.getItem("authToken");
+      const authToken = localStorage.getItem("authToken");
       await axios.post("http://localhost:5005/auth/signup", requestBody);
 
       // or with a service
