@@ -13,6 +13,7 @@ import EditProfilePage from "./pages/EditProfilePage/EditProfilePage";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
 import AddProductsPage from "./pages/AddProductsPage/AddProductsPage";
+import ProductsPage from "./pages/ProductsPage/ProductsPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
 
+        <Route path="/products" element={<ProductsPage />} />
         <Route
           path="/profile"
           element={

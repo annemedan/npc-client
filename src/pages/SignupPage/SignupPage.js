@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 //import authService from "../../services/auth.service";
 import fileService from "../../services/file.service";
+const serverUrl = process.env.REACT_APP_SERVER_URL;
 
 function SignupPage(props) {
   const [email, setEmail] = useState("");
@@ -71,7 +72,7 @@ function SignupPage(props) {
       //console.log("requestBody on signup/ front end", requestBody);
 
       const authToken = localStorage.getItem("authToken");
-      await axios.post("http://localhost:5005/auth/signup", requestBody);
+      await axios.post(`${serverUrl}/auth/signup`, requestBody);
 
       // or with a service
       // await authService.signup(requestBody);
