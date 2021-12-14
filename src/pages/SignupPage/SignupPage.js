@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import authService from "../../services/auth.service";
+//import authService from "../../services/auth.service";
 import fileService from "../../services/file.service";
 
 function SignupPage(props) {
@@ -70,7 +70,7 @@ function SignupPage(props) {
 
       //console.log("requestBody on signup/ front end", requestBody);
 
-      const authToken = localStorage.getItem("authToken");
+      //const authToken = localStorage.getItem("authToken");
       await axios.post("http://localhost:5005/auth/signup", requestBody);
 
       // or with a service

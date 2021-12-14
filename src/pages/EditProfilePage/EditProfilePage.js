@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/auth.context";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import fileService from "../../services/file.service";
 
@@ -19,7 +19,7 @@ function EditProfilePage() {
 
   const navigate = useNavigate();
 
-  const { user, isLoggedIn } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   let storeAuth;
   if (user) {
