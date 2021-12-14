@@ -6,6 +6,8 @@ import { AuthContext } from "../../context/auth.context";
 
 import fileService from "../../services/file.service";
 
+const serverUrl = process.env.REACT_APP_SERVER_URL;
+
 function AddProductsPage() {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("Other");
@@ -61,7 +63,7 @@ function AddProductsPage() {
 
     //console.log(body);
 
-    await axios.post(`${process.env.REACT_APP_SERVER_URL}/products/add`, body);
+    await axios.post(`${serverUrl}/products/add`, body);
     console.log("product created");
     navigate("/products");
   };

@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import fileService from "../../services/file.service";
 
+const serverUrl = process.env.REACT_APP_SERVER_URL;
+
 function EditProfilePage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -35,10 +37,9 @@ function EditProfilePage() {
     const fetchData = async () => {
       try {
         const authToken = localStorage.getItem("authToken");
-        const response = await axios.get(
-          "http://localhost:5005/api/users/profile",
-          { headers: { Authorization: `Bearer ${authToken}` } }
-        );
+        const response = await axios.get(`${serverUrl}/api/users/profile`, {
+          headers: { Authorization: `Bearer ${authToken}` },
+        });
 
         const theProfile = response.data;
         console.log("theProfile", theProfile);
