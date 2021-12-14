@@ -11,14 +11,14 @@ function ProfilePage() {
     <div className="regular-bg">
       <div className="row1">
         <div className="col-md-6 row1-flex">
-          <div>
+          <div className="top-profile">
             <img
-              className="roww1-image"
+              className="row1-image"
               src={user.image}
               alt="user profile pic"
             />
           </div>
-          <div className="roww1-text">
+          <div className="row1-text">
             {user.isStore ? (
               <>
                 <h1>{user.storeName}</h1>

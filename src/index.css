@@ -335,7 +335,7 @@ nav li {
   padding-top: 6%;
   margin: 1%;
   /* padding-bottom: 2%; */
-  font-size: 10rem;
+  font-size: 10vw;
 }
 
 .title-home h2 {
@@ -345,4 +345,11 @@ nav li {
 
 .title-home h3 {
   padding-bottom: 50%;
+}
+.row1-text {
+  padding-bottom: 40%;
+}
+
+.top-profile {
+  padding-top: 10%;
 }
