@@ -103,7 +103,7 @@ function EditProfilePage() {
 
       const authToken = localStorage.getItem("authToken");
       await axios.put(
-        "http://localhost:5005/api/users/profile",
+        `${serverUrl}/api/users/profile`,
         updatedProfile,
         {
           headers: { Authorization: `Bearer ${authToken}` },
