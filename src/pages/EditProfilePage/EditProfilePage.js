@@ -102,14 +102,9 @@ function EditProfilePage() {
       };
 
       const authToken = localStorage.getItem("authToken");
-      await axios.put(
-        `${serverUrl}/api/users/profile`,
-        updatedProfile,
-        {
-          headers: { Authorization: `Bearer ${authToken}` },
-        },
-        { new: true } //! not sure if this should be here
-      );
+      await axios.put(`${serverUrl}/api/users/profile`, updatedProfile, {
+        headers: { Authorization: `Bearer ${authToken}` },
+      });
 
       // If the request is successful navigate to login page
       navigate("/profile");

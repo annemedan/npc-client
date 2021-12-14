@@ -45,6 +45,8 @@ function AddProductsPage() {
     }
   };
 
+  console.log("image in the new product", imageUrl);
+
   const handleCategory = (e) => setCategory(e.target.value);
   const handleName = (e) => setName(e.target.value);
 
@@ -55,16 +57,14 @@ function AddProductsPage() {
       user: user._id,
       name,
       category,
-      image: imageUrl,
+      productImage: imageUrl,
       quantity_available: quantity,
       price,
       description,
     };
 
-    //console.log(body);
-
     await axios.post(`${serverUrl}/products/add`, body);
-    console.log("product created");
+    console.log("product created", body);
     navigate("/products");
   };
 
@@ -90,6 +90,12 @@ function AddProductsPage() {
               })}
             </select>
           </div>
+
+          <div className="no-padding">
+            <label>Image</label>
+            <input type="file" onChange={handleFileUpload} />
+          </div>
+
           <div>
             <label>Name</label>
             <input type="text" onChange={handleName} value={name} required />
@@ -123,10 +129,6 @@ function AddProductsPage() {
           </div>
 
           <span>
-            <div className="no-padding">
-              <label>Image</label>
-              <input type="file" onChange={handleFileUpload} />
-            </div>
             <button type="submit">Create</button>{" "}
           </span>
         </form>

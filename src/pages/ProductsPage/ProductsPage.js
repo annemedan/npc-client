@@ -27,7 +27,7 @@ function ProductsPage() {
       };
 
       const storeUsers = allUsers.filter(getStores);
-      console.log(storeUsers);
+      //console.log(storeUsers);
 
       setUsers(storeUsers);
     };
@@ -36,20 +36,20 @@ function ProductsPage() {
   }, []);
 
   return (
-    <div1 className="products-list">
-      <div2 className="products-list-filters">
+    <div className="products-list">
+      <div className="products-list-filters">
         <Search searchInput={searchInput} searchUserFilter={searchUserFilter} />
 
         <h4>All products available</h4>
-      </div2>
+      </div>
 
-      <div3 className="products-list-container"></div3>
+      <div className="products-list-container"></div>
 
-      <div4>
+      <div>
         {users.length !== 0 ? (
           users.map((eachUser) => {
             return eachUser.productItems ? (
-              <div5 className="products-store">
+              <div className="products-store">
                 <img
                   src={eachUser.image}
                   alt="profile img"
@@ -57,11 +57,32 @@ function ProductsPage() {
                 />
                 <h2>{eachUser.storeName}</h2>
                 <div className="each-item">
-                  {eachUser.productItems.map((item) => {
-                    return item.quantity_available;
+                  {eachUser.productItems.map((item, index) => {
+                    return (
+                      <div key={index} className="product-card">
+                        <Link to={`/products/${item._id}`}>
+                          <img
+                            src={item.productImage}
+                            width="50px"
+                            height="50px"
+                            className="product-card-img"
+                            alt={item.name}
+                          />
+                        </Link>
+                        <div className="product-card-text">
+                          <span>
+                            <h5>{item.name}</h5>
+                            <Link to={`/products/${item._id}`}>
+                              View details
+                            </Link>
+                          </span>
+                          <p>{item.price}€</p>
+                        </div>
+                      </div>
+                    );
                   })}
                 </div>
-              </div5>
+              </div>
             ) : (
               <>
                 <p>Nothing to Show</p>
@@ -71,8 +92,8 @@ function ProductsPage() {
         ) : (
           <p> Nothing here - false </p>
         )}
-      </div4>
-    </div1>
+      </div>
+    </div>
   );
 }
 
