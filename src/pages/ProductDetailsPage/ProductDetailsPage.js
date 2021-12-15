@@ -41,14 +41,12 @@ function ProductDetailsPage() {
       itemId: item._id,
       quantity: quantity,
       purchasePrice: `${item.price * quantity}`,
+      userId: user._id,
     };
-
+    console.log("product", product);
     if (user) {
       //const response = await axios.post(`${serverUrl}/cart`, product);
-      const response = await axios.put(
-        `${serverUrl}/cart/${user._id}`,
-        product
-      );
+      const response = await axios.post(`${serverUrl}/cart`, product);
       console.log("response", response.data);
     } else {
       navigate("/login");

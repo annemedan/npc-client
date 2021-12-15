@@ -89,14 +89,8 @@ function ProfilePage() {
                                   {" "}
                                   <Link to={`/products/${item._id}/edit`}>
                                     {" "}
-                                    Edit Item{" "}
+                                    Edit/Delete Item{" "}
                                   </Link>{" "}
-                                </button>
-                                <button
-                                  className="button-profile"
-                                  onClick={() => {}}
-                                >
-                                  Delete Item
                                 </button>
                               </div>
                             </div>
