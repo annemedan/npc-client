@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 
+import cartPic from "./—Pngtree—flat shopping cart png download_4441398.png";
+
 function Navbar() {
   // Get the value from the context
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
@@ -49,9 +51,18 @@ function Navbar() {
 
       <div className="profile-img-wrapper">
         {user && (
-          <Link to="/profile">
-            <img className="profile-img" src={user.image} alt="profile" />
-          </Link>
+          <>
+            <div>
+              <Link to={`/cart/${user._id}`}>
+                <img className="cart-img" src={cartPic} alt="cart" />
+              </Link>
+            </div>
+            <div>
+              <Link to="/profile">
+                <img className="profile-img" src={user.image} alt="profile" />
+              </Link>
+            </div>
+          </>
         )}
       </div>
     </nav>

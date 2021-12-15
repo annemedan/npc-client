@@ -117,6 +117,7 @@ nav li {
 
 .profile-img-wrapper {
   width: 50px;
+  display: flex;
 }
 
 .profile-img {
@@ -124,6 +125,11 @@ nav li {
   border-radius: 35px;
   border: 2px solid black;
   background-color: rgba(255, 255, 255, 0.3);
+}
+
+.cart-img {
+  width: 35px;
+  /* border: 2px solid black; */
 }
 
 .row1-image {
@@ -355,4 +361,25 @@ nav li {
 
 .store-image-products {
   width: 25%;
+}
+
+.profile-products {
+  display: flex;
+  flex-direction: grid;
+  padding-top: 5%;
+  max-width: 80%;
+  margin-left: 10%;
+}
+
+.button-profile {
+  text-align: center;
+  text-decoration: none;
+  width: 70%;
+  font-size: 80%;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 30%;
 }

@@ -59,7 +59,7 @@ function ProductsPage() {
                 <div className="each-item">
                   {eachUser.productItems.map((item, index) => {
                     return (
-                      <div key={index} className="product-card">
+                      <div key={item._id} className="product-card">
                         <Link to={`/products/${item._id}`}>
                           <img
                             src={item.productImage}
@@ -84,9 +84,9 @@ function ProductsPage() {
                 </div>
               </div>
             ) : (
-              <>
-                <p>Nothing to Show</p>
-              </>
+              <div>
+                <p>No products to display</p>
+              </div>
             );
           })
         ) : (

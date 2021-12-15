@@ -14,6 +14,8 @@ import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
 import AddProductsPage from "./pages/AddProductsPage/AddProductsPage";
 import ProductsPage from "./pages/ProductsPage/ProductsPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
+import EditProductsPage from "./pages/EditProductsPage/EditProductsPage";
 
 function App() {
   return (
@@ -24,6 +26,17 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         <Route path="/products" element={<ProductsPage />} />
+
+        <Route path="/products/:id" element={<ProductDetailsPage />} />
+        <Route
+          path="/products/:id/edit"
+          element={
+            <IsPrivate>
+              {" "}
+              <EditProductsPage />{" "}
+            </IsPrivate>
+          }
+        />
 
         <Route
           path="/profile"
