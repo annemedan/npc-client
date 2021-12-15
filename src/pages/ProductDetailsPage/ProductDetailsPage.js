@@ -30,12 +30,6 @@ function ProductDetailsPage() {
     getProductDetails();
   }, []);
 
-  //   let possibleToEdit;
-
-  //   user && item && item.user.email === user.email
-  //     ? (possibleToEdit = true)
-  //     : (possibleToEdit = false);
-
   const handleAddToCart = async () => {
     const product = {
       itemId: item._id,
@@ -45,14 +39,15 @@ function ProductDetailsPage() {
     };
     console.log("product", product);
     if (user) {
-      //const response = await axios.post(`${serverUrl}/cart`, product);
-      const response = await axios.post(`${serverUrl}/cart`, product);
+      const response = await axios.post(
+        `${serverUrl}/cart/${user._id}`,
+        product
+      );
       console.log("response", response.data);
     } else {
       navigate("/login");
     }
 
-    //setCurrentLoggedInUser(response.data);
     console.log("Added to cart");
     navigate("/products");
   };

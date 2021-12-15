@@ -16,6 +16,7 @@ import AddProductsPage from "./pages/AddProductsPage/AddProductsPage";
 import ProductsPage from "./pages/ProductsPage/ProductsPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 import EditProductsPage from "./pages/EditProductsPage/EditProductsPage";
+import CartPage from "./pages/CartPage/CartPage";
 
 function App() {
   return (
@@ -37,6 +38,8 @@ function App() {
             </IsPrivate>
           }
         />
+
+        <Route path="/cart/:userId" element={<CartPage />} />
 
         <Route
           path="/profile"
