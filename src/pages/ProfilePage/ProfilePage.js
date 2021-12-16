@@ -75,13 +75,13 @@ function ProfilePage() {
                                   src={item.productImage}
                                   width="50px"
                                   height="50px"
-                                  className="product__image"
+                                  className="product-image"
                                   alt={item.name}
                                 />
                               </Link>
                               <div>
                                 <span>
-                                  <h5 className="product__name">{item.name}</h5>
+                                  <p className="product-name">{item.name}</p>
                                   <Link
                                     to={`/products/${item._id}`}
                                     className="details-product"
@@ -89,7 +89,7 @@ function ProfilePage() {
                                     View details
                                   </Link>
                                 </span>
-                                <p className="product__price">{item.price}€</p>
+                                <p className="product-price">{item.price}€</p>
 
                                 <button className="button-profile">
                                   {" "}

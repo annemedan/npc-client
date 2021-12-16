@@ -78,13 +78,13 @@ function ProductsPage() {
                             src={item.productImage}
                             width="50px"
                             height="50px"
-                            className="product__image"
+                            className="product-image"
                             alt={item.name}
                           />
                         </Link>
                         <span>
-                          <h5 className="product__name">{item.name}</h5>
-                          <p className="product__price">{item.price}€</p>
+                          <p className="product-name">{item.name}</p>
+                          <p className="product-price">{item.price}€</p>
                           <Link
                             to={`/products/${item._id}`}
                             className="details-product"
