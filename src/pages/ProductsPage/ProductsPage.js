@@ -50,10 +50,10 @@ function ProductsPage() {
   //   };
 
   return (
-    <div className="products-list">
+    <div className="products-list regular-bg">
+      <h2>All products available</h2>
       <div className="products-list-filters">
         {/* <SearchBar searchFilter={searchFilter} /> */}
-        <h4>All products available</h4>
       </div>
 
       <div className="products-list-container"></div>
@@ -69,36 +69,32 @@ function ProductsPage() {
                   className="store-image-products"
                 />
                 <h2>{eachUser.storeName}</h2>
-                <div className="each-item">
+                <div className="collection">
                   {eachUser.productItems.map((item, index) => {
                     return (
-                      <div key={item._id} className="product-card">
+                      <div key={item._id} className="product">
                         <Link to={`/products/${item._id}`}>
                           <img
                             src={item.productImage}
                             width="50px"
                             height="50px"
-                            className="product-card-img"
+                            className="product__image"
                             alt={item.name}
                           />
                         </Link>
-                        <div className="product-card-text">
-                          <span>
-                            <h5>{item.name}</h5>
-                            <Link to={`/products/${item._id}`}>
-                              View details
-                            </Link>
-                          </span>
-                          <p>{item.price}€</p>
-                        </div>
+                        <span>
+                          <h5 className="product__name">{item.name}</h5>
+                          <p className="product__price">{item.price}€</p>
+                          <Link to={`/products/${item._id}`}>View details</Link>
+                        </span>
                       </div>
                     );
                   })}
                 </div>
               </div>
             ) : (
-              <div>
-                <p>No products to display</p>
+              <div className="regular-bg">
+                <h1>No products to display</h1>
               </div>
             );
           })

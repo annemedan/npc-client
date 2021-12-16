@@ -62,28 +62,31 @@ function ProfilePage() {
                   </Link>
 
                   {thisProfile && (
-                    <div className="profile-products">
+                    <div className="profile-products collection">
                       {thisProfile[0].productItems.length !== 0 ? (
                         thisProfile[0].productItems.map((item, index) => {
                           return (
-                            <div key={item._id} className="product-card">
+                            <div
+                              key={item._id}
+                              className="product-card product"
+                            >
                               <Link to={`/products/${item._id}`}>
                                 <img
                                   src={item.productImage}
                                   width="50px"
                                   height="50px"
-                                  className="product-card-img"
+                                  className="product__image"
                                   alt={item.name}
                                 />
                               </Link>
-                              <div className="product-card-text">
+                              <div>
                                 <span>
-                                  <h5>{item.name}</h5>
+                                  <h5 className="product__name">{item.name}</h5>
                                   <Link to={`/products/${item._id}`}>
                                     View details
                                   </Link>
                                 </span>
-                                <p>{item.price}€</p>
+                                <p className="product__price">{item.price}€</p>
 
                                 <button className="button-profile">
                                   {" "}

@@ -69,69 +69,92 @@ function AddProductsPage() {
   };
 
   return (
-    <div className="add-product-container">
-      <div class="add-product-row col-md-6">
-        <h2>Add Product</h2>
-        <form onSubmit={handleFormSubmit} encType="multipart/form-data">
-          <div>
-            <label>Category</label>
-            <select
-              name="type"
-              value={category}
-              onChange={handleCategory}
-              required
-            >
-              {selectCategory.map((singleCategory, index) => {
-                return (
-                  <option key={index} value={singleCategory}>
-                    {singleCategory}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
+    <div className="regular-bg">
+      <h1 className="h1-edit">Add a product to your store </h1>
+      <div className="edit-user">
+        <div className="container">
+          <div className="col-md-6 r-store-add r-edit">
+            <h2>-</h2>
+            <form onSubmit={handleFormSubmit} encType="multipart/form-data">
+              <span className="row">
+                <span className="edit-user-box col-md-6">
+                  <label>Category</label>
+                  <select
+                    name="type"
+                    value={category}
+                    onChange={handleCategory}
+                    required
+                    className="edit-user-input"
+                  >
+                    {selectCategory.map((singleCategory, index) => {
+                      return (
+                        <option key={index} value={singleCategory}>
+                          {singleCategory}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </span>
 
-          <div className="no-padding">
-            <label>Image</label>
-            <input type="file" onChange={handleFileUpload} />
-          </div>
+                <span className="edit-user-box col-md-6">
+                  <label>Image</label>
+                  <input
+                    type="file"
+                    onChange={handleFileUpload}
+                    className="edit-user-input"
+                  />
+                </span>
 
-          <div>
-            <label>Name</label>
-            <input type="text" onChange={handleName} value={name} required />
-          </div>
+                <span className="edit-user-box col-md-6">
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    onChange={handleName}
+                    value={name}
+                    required
+                    className="edit-user-input"
+                  />
+                </span>
 
-          <div>
-            <label>Quantity in Stock</label>
-            <input
-              type="number"
-              onChange={(e) => setQuantity(e.target.value)}
-              value={quantity}
-            />
-          </div>
+                <span className="edit-user-box col-md-6">
+                  <label>Quantity in Stock</label>
+                  <input
+                    type="number"
+                    onChange={(e) => setQuantity(e.target.value)}
+                    value={quantity}
+                    className="edit-user-input"
+                  />
+                </span>
 
-          <div>
-            <label>Price</label>
-            <input
-              type="number"
-              onChange={(e) => setPrice(e.target.value)}
-              value={price}
-            />
-          </div>
+                <span className="edit-user-box col-md-6">
+                  <label>Price</label>
+                  <input
+                    type="number"
+                    onChange={(e) => setPrice(e.target.value)}
+                    value={price}
+                    className="edit-user-input"
+                  />
+                </span>
 
-          <div>
-            <label>Description</label>
-            <input
-              type="text"
-              onChange={(e) => setDescription(e.target.value)}
-              value={description}
-            />
-          </div>
+                <span className="edit-user-box col-md-6">
+                  <label>Description</label>
+                  <input
+                    type="text"
+                    onChange={(e) => setDescription(e.target.value)}
+                    value={description}
+                    className="edit-user-input"
+                  />
+                </span>
 
-          <span>
-            <button type="submit">Create</button>{" "}
-          </span>
-        </form>
+                <span className="edit-user-buttons r-store-buttons">
+                  <button type="submit" size="lg">
+                    Create
+                  </button>{" "}
+                </span>
+              </span>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   );
