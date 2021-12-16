@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
-import Search from "./Search.js";
+import SearchBar from "../../components/Search/Search.js";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 function ProductsPage() {
-  const { search } = window.location;
-  const query = new URLSearchParams(search).get("search-bar");
-  const [searchInput, searchUserFilter] = useState(query || "");
   const [users, setUsers] = useState("");
+  const [products, setProducts] = useState("");
 
   useEffect(() => {
     const getAllUsers = async () => {
@@ -35,11 +33,26 @@ function ProductsPage() {
     getAllUsers();
   }, []);
 
+  //   const searchFilter = (chars) => {
+  //     const filteredProducts = users.filter((product) => {
+  //       const items = product.productItems.name
+  //         .toLowercase()
+  //         .includes(chars.toLowerCase());
+
+  //       console.log(
+  //         "items",
+  //         items
+  //         // .includes(chars.toLowerCase())
+  //       );
+  //     });
+
+  //     setProducts(filteredProducts);
+  //   };
+
   return (
     <div className="products-list">
       <div className="products-list-filters">
-        <Search searchInput={searchInput} searchUserFilter={searchUserFilter} />
-
+        {/* <SearchBar searchFilter={searchFilter} /> */}
         <h4>All products available</h4>
       </div>
 

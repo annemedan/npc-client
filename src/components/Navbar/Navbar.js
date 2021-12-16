@@ -16,56 +16,76 @@ function Navbar() {
   }
 
   return (
-    <nav className="Navbar">
-      <Link to="/">
-        <button>Home</button>
-      </Link>
+    <ul className="nav-bar-project">
+      <nav>
+        <div className="text-in-nav">
+          <li>
+            {" "}
+            <Link to="/">Home</Link>{" "}
+          </li>
 
-      <Link to="/products">
-        <button>All Products</button>
-      </Link>
+          <li>
+            {" "}
+            <Link to="/products">All Products</Link>
+          </li>
 
-      {storeAuth && isLoggedIn ? (
-        <Link to="/products/add">
-          <button>Add Products</button>
-        </Link>
-      ) : null}
+          {storeAuth && isLoggedIn ? (
+            <li>
+              {" "}
+              <Link to="/products/add">Add Products</Link>{" "}
+            </li>
+          ) : null}
 
-      {isLoggedIn && (
-        <>
-          <button onClick={logOutUser}>Logout</button>
-        </>
-      )}
+          {isLoggedIn && (
+            <li>
+              {" "}
+              <Link onClick={logOutUser} to="/">
+                Logout
+              </Link>{" "}
+            </li>
+          )}
 
-      {!isLoggedIn && (
-        <>
-          <Link to="/signup">
-            <button>Sign Up</button>
-          </Link>
+          {!isLoggedIn && (
+            <>
+              <li>
+                {" "}
+                <Link to="/signup">Sign Up</Link>{" "}
+              </li>
 
-          <Link to="/login">
-            <button>Login</button>
-          </Link>
-        </>
-      )}
+              <li>
+                {" "}
+                <Link to="/login">Login</Link>{" "}
+              </li>
+            </>
+          )}
+        </div>
 
-      <div className="profile-img-wrapper">
-        {user && (
-          <>
+        <div className="image-in-nav">
+          {user && (
             <div>
-              <Link to={`/cart/${user._id}`}>
-                <img className="cart-img" src={cartPic} alt="cart" />
-              </Link>
+              <li>
+                {" "}
+                <Link to={`/cart/${user._id}`}>
+                  <img
+                    className="cart-img"
+                    src={cartPic}
+                    alt="cart"
+                    className="cart-icon"
+                  />
+                </Link>{" "}
+              </li>
+
+              <li>
+                {" "}
+                <Link to="/profile">
+                  <img className="profile-img" src={user.image} alt="profile" />
+                </Link>{" "}
+              </li>
             </div>
-            <div>
-              <Link to="/profile">
-                <img className="profile-img" src={user.image} alt="profile" />
-              </Link>
-            </div>
-          </>
-        )}
-      </div>
-    </nav>
+          )}
+        </div>
+      </nav>
+    </ul>
   );
 }
 

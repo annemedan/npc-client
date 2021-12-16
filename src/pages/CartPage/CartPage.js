@@ -11,49 +11,73 @@ function CartPage() {
   //console.log("userId", userId);
 
   const [thisUser, setThisUser] = useState(undefined);
-  const [productsList, setProductsList] = useState(undefined);
+
+  const [cart, setCart] = useState(undefined);
 
   useEffect(() => {
     const getCurrentUser = async () => {
       const response = await axios.get(`${serverUrl}/user/${userId}`);
-      const userInfo = response.data;
-      console.log("userInfo", userInfo);
-      setThisUser(userInfo);
+      const cartInfo = response.data.cart;
+      console.log("cart", cartInfo);
+      setCart(cartInfo);
     };
 
     getCurrentUser();
   }, []);
 
-  //if (thisUser) {
-  //   thisUser.cart.products.forEach((element) => {
-  //     const getItems = async () => {
-  //       const response = await axios.get(`${serverUrl}/products/${element.item}`);
-  //       const eachProduct = response.data;
-  //       console.log("productsList:", eachProduct);
-  //       setProductsList(eachProduct);
-  //     };
-  //     getItems();
-  //   });
-  //}
-
-  //i think we can use this
-
-  //console.log("userInfo", userInfo);
-  // setThisUser(userInfo);
-
-  //i think i can populate the items with router.get("/products/:id"
+  const getTotal = (eachPrice) => {
+    for (let i = 0; i < eachPrice.length; i++) {
+      let sum = 0;
+      sum += eachPrice[i];
+    }
+  };
 
   return (
     <div className="cart-page">
       <h2>Your current cart:</h2>
       <div className="cart-box">
-        {thisUser && (
-          <>
-            <p>Delivery Fee: {thisUser.cart.deliveryFee}€ </p>
-            <p> Total: {thisUser.cart.totalPrice} </p>
+        {cart && (
+          <div>
+            {/* {cart.products[0].item.name} */}
+            <div>
+              <div>
+                <table className="cart-table">
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Product Preview</th>
+                    <th>Quantity</th>
+                  </tr>
 
-            <p> {thisUser.status} </p>
-          </>
+                  {cart.products.map((eachProduct) => {
+                    return (
+                      <tr>
+                        <td> {eachProduct.item.name} </td>
+                        <td> {eachProduct.item.price} </td>
+                        <td>
+                          {" "}
+                          <img
+                            src={eachProduct.item.productImage}
+                            alt="product pic"
+                            className="product-img-cart"
+                          />{" "}
+                        </td>
+                        <td>{eachProduct.quantity}</td>
+                      </tr>
+                    );
+                  })}
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <p>Delivery Fee: {cart.deliveryFee}€ </p>
+
+              <p> Total: ? </p>
+
+              <p>Status: {cart.status}</p>
+            </div>
+          </div>
         )}
 
         <button>
