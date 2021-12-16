@@ -14,6 +14,8 @@ function CartPage() {
 
   const [cart, setCart] = useState(undefined);
 
+  // const [userCart, setUserCart] = useState({});
+
   useEffect(() => {
     const getCurrentUser = async () => {
       const response = await axios.get(`${serverUrl}/user/${userId}`);
@@ -25,10 +27,44 @@ function CartPage() {
     getCurrentUser();
   }, []);
 
-  const getTotal = (eachPrice) => {
-    for (let i = 0; i < eachPrice.length; i++) {
-      let sum = 0;
-      sum += eachPrice[i];
+  //this is now working:
+
+  const handleDeleteButton = async (item) => {
+    const product = {
+      itemId: item.item._id,
+      quantity: item.quantity,
+      purchasePrice: item.item.price * item.quantity,
+      userId: userId,
+    };
+    const response = await axios.put(
+      `${serverUrl}/cart/${cart._id}/remove`,
+      product,
+      { withCredentials: true }
+    );
+    setCart(response.data);
+  };
+
+  const handleQuantityButton = async (statement, item) => {
+    const product = {
+      itemId: item.item._id,
+      quantity: item.quantity,
+      purchasePrice: item.item.price * item.quantity,
+      userId: userId,
+    };
+    if (statement === "decrease") {
+      const response = await axios.put(
+        `${serverUrl}/cart/${cart._id}/decrease`,
+        product,
+        { withCredentials: true }
+      );
+      setCart(response.data);
+    } else if (statement === "increase") {
+      const response = await axios.put(
+        `${serverUrl}/cart/${cart._id}/increase`,
+        product,
+        { withCredentials: true }
+      );
+      setCart(response.data);
     }
   };
 
@@ -42,28 +78,65 @@ function CartPage() {
             <div>
               <div>
                 <table className="cart-table">
-                  <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Product Preview</th>
-                    <th>Quantity</th>
-                  </tr>
-
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Price</th>
+                      <th>Product Preview</th>
+                      <th>Quantity</th>
+                    </tr>
+                  </thead>
                   {cart.products.map((eachProduct) => {
                     return (
-                      <tr>
-                        <td> {eachProduct.item.name} </td>
-                        <td> {eachProduct.item.price} </td>
-                        <td>
-                          {" "}
-                          <img
-                            src={eachProduct.item.productImage}
-                            alt="product pic"
-                            className="product-img-cart"
-                          />{" "}
-                        </td>
-                        <td>{eachProduct.quantity}</td>
-                      </tr>
+                      <tbody key={eachProduct._id}>
+                        <tr>
+                          <td> {eachProduct.item.name} </td>
+                          <td> {eachProduct.item.price} </td>
+                          <td>
+                            {" "}
+                            <img
+                              src={eachProduct.item.productImage}
+                              alt="product pic"
+                              className="product-img-cart"
+                            />{" "}
+                          </td>
+                          <td>
+                            <div className="cart-buttons-box">
+                              <div className="cart-quantity-buttons">
+                                <button
+                                  className="cart-quantity-button"
+                                  onClick={() =>
+                                    handleQuantityButton(
+                                      "decrease",
+                                      eachProduct
+                                    )
+                                  }
+                                >
+                                  -
+                                </button>
+                                <p>{eachProduct.quantity}</p>
+                                <button
+                                  className="cart-quantity-button"
+                                  onClick={() =>
+                                    handleQuantityButton(
+                                      "increase",
+                                      eachProduct
+                                    )
+                                  }
+                                >
+                                  +
+                                </button>
+                              </div>
+                              <button
+                                className="cart-remove-button"
+                                onClick={() => handleDeleteButton(eachProduct)}
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
                     );
                   })}
                 </table>
@@ -71,10 +144,7 @@ function CartPage() {
             </div>
 
             <div>
-              <p>Delivery Fee: {cart.deliveryFee}€ </p>
-
-              {/* <p> Total: ? </p> */}
-
+              <p>Expected Delivery Fee: {cart.deliveryFee}€ </p>
               <p>Status: {cart.status}</p>
             </div>
           </div>
@@ -83,7 +153,7 @@ function CartPage() {
         <button>
           <Link className="cart-checkout-button" to="/cart/checkout">
             {" "}
-            Check out
+            Checkout
           </Link>
         </button>
       </div>

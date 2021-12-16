@@ -56,7 +56,7 @@ function ProfilePage() {
                   <Link to={"/profile/edit"}>
                     <button>Edit Profile</button>
                   </Link>
-
+                  {"  "}
                   <Link to={"/products/add"}>
                     <button>Add New Product</button>
                   </Link>
@@ -82,7 +82,10 @@ function ProfilePage() {
                               <div>
                                 <span>
                                   <h5 className="product__name">{item.name}</h5>
-                                  <Link to={`/products/${item._id}`}>
+                                  <Link
+                                    to={`/products/${item._id}`}
+                                    className="details-product"
+                                  >
                                     View details
                                   </Link>
                                 </span>

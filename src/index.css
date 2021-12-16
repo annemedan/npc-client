@@ -519,3 +519,7 @@ a {
 .error-img {
   width: 60%;
 }
+
+.details-product {
+  text-decoration: underline;
+}

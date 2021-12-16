@@ -85,7 +85,12 @@ function ProductsPage() {
                         <span>
                           <h5 className="product__name">{item.name}</h5>
                           <p className="product__price">{item.price}€</p>
-                          <Link to={`/products/${item._id}`}>View details</Link>
+                          <Link
+                            to={`/products/${item._id}`}
+                            className="details-product"
+                          >
+                            View details
+                          </Link>
                         </span>
                       </div>
                     );
