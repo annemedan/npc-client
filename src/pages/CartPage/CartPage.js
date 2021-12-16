@@ -73,7 +73,7 @@ function CartPage() {
             <div>
               <p>Delivery Fee: {cart.deliveryFee}€ </p>
 
-              <p> Total: ? </p>
+              {/* <p> Total: ? </p> */}
 
               <p>Status: {cart.status}</p>
             </div>

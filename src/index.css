@@ -515,3 +515,7 @@ button {
 a {
   text-decoration: none;
 }
+
+.error-img {
+  width: 60%;
+}
