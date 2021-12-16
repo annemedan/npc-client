@@ -523,3 +523,12 @@ a {
 .details-product {
   text-decoration: underline;
 }
+
+.cart-quantity-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+}

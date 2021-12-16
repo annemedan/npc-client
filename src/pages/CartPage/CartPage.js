@@ -113,8 +113,8 @@ function CartPage() {
                                   }
                                 >
                                   -
-                                </button>
-                                <p>{eachProduct.quantity}</p>
+                                </button>{" "}
+                                <p> {eachProduct.quantity} </p>{" "}
                                 <button
                                   className="cart-quantity-button"
                                   onClick={() =>
