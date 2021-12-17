@@ -45,7 +45,7 @@ function AddProductsPage() {
     }
   };
 
-  console.log("image in the new product", imageUrl);
+  //console.log("image in the new product", imageUrl);
 
   const handleCategory = (e) => setCategory(e.target.value);
   const handleName = (e) => setName(e.target.value);
@@ -64,7 +64,7 @@ function AddProductsPage() {
     };
 
     await axios.post(`${serverUrl}/products/add`, body);
-    console.log("product created", body);
+    // console.log("product created", body);
     navigate("/products");
   };
 

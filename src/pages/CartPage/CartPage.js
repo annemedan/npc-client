@@ -74,7 +74,6 @@ function CartPage() {
       <div className="cart-box">
         {cart && (
           <div>
-            {/* {cart.products[0].item.name} */}
             <div>
               <div>
                 <table className="cart-table">
@@ -145,7 +144,7 @@ function CartPage() {
 
             <div>
               <p>Expected Delivery Fee: {cart.deliveryFee}€ </p>
-              <p>Status: {cart.status}</p>
+              <p>Purchase Status: {cart.status}</p>
             </div>
           </div>
         )}

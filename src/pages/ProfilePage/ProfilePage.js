@@ -24,7 +24,7 @@ function ProfilePage() {
       };
 
       const profileUser = allUsers.filter(findingProfileUser);
-      console.log("profileUser");
+      // console.log("profileUser");
 
       setThisProfile(profileUser);
     };
@@ -32,7 +32,7 @@ function ProfilePage() {
     getProfileUser();
   }, []);
 
-  console.log("thisprofile", thisProfile);
+  // console.log("thisprofile", thisProfile);
 
   return (
     user && (

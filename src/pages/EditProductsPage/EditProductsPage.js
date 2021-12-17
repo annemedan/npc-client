@@ -30,7 +30,7 @@ function EditProductsPage() {
     const getProductDetails = async () => {
       const response = await axios.get(`${serverUrl}/products/${id}/`);
       const itemInfo = response.data;
-      console.log("itemInfo", itemInfo);
+      // console.log("itemInfo", itemInfo);
 
       setItem(itemInfo);
 
