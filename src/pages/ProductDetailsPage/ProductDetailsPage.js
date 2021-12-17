@@ -43,7 +43,7 @@ function ProductDetailsPage() {
         `${serverUrl}/cart/${user._id}`,
         product
       );
-      console.log("response", response.data);
+      //console.log("response", response.data);
     } else {
       navigate("/login");
     }
@@ -68,7 +68,6 @@ function ProductDetailsPage() {
           <h5>Stock: {item.quantity_available}</h5>
         </span>
         <h1>{item.price}€</h1>
-        {/* <button onClick={handleAddtoCart} variant="success"> */}
         <button onClick={handleAddToCart}>Add to cart</button>{" "}
         <div className="product-description"></div>
         <p>{item.description}</p>

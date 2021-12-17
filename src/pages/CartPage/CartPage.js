@@ -90,7 +90,7 @@ function CartPage() {
                       <tbody key={eachProduct._id}>
                         <tr>
                           <td> {eachProduct.item.name} </td>
-                          <td> {eachProduct.item.price} </td>
+                          <td> {eachProduct.item.price}€ </td>
                           <td>
                             {" "}
                             <img
