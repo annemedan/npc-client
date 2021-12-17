@@ -51,7 +51,7 @@ function ProductsPage() {
 
   return (
     <div className="products-list regular-bg">
-      <h2>All products available</h2>
+      <h2>Products available</h2>
       <div className="products-list-filters">
         {/* <SearchBar searchFilter={searchFilter} /> */}
       </div>
