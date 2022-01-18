@@ -523,3 +523,8 @@ a {
   justify-content: space-between;
   align-items: center;
 }
+
+.back-to-signup {
+  padding: 5px;
+  text-decoration: underline;
+}
