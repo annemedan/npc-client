@@ -68,7 +68,10 @@ function ProductDetailsPage() {
           <h5>Stock: {item.quantity_available}</h5>
         </span>
         <h1>{item.price}€</h1>
-        <button onClick={handleAddToCart}>Add to cart</button>{" "}
+        {!user.isStore && (
+          <button onClick={handleAddToCart}>Add to cart</button>
+        )}
+
         <div className="product-description"></div>
         <p>{item.description}</p>
       </div>{" "}
