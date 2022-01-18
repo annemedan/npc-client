@@ -33,27 +33,27 @@ function ProductsPage() {
     getAllUsers();
   }, []);
 
-  //   const searchFilter = (chars) => {
-  //     const filteredProducts = users.filter((product) => {
-  //       const items = product.productItems.name
-  //         .toLowercase()
-  //         .includes(chars.toLowerCase());
+  const searchFilter = (chars) => {
+    const filteredProducts = users.filter((product) => {
+      const items = product.productItems.name
+        .toLowercase()
+        .includes(chars.toLowerCase());
 
-  //       console.log(
-  //         "items",
-  //         items
-  //         // .includes(chars.toLowerCase())
-  //       );
-  //     });
+      console.log(
+        "items",
+        items
+        // .includes(chars.toLowerCase())
+      );
+    });
 
-  //     setProducts(filteredProducts);
-  //   };
+    setProducts(filteredProducts);
+  };
 
   return (
     <div className="products-list regular-bg">
       <h2>Products available</h2>
       <div className="products-list-filters">
-        {/* <SearchBar searchFilter={searchFilter} /> */}
+        <SearchBar searchFilter={searchFilter} />
       </div>
 
       <div className="products-list-container"></div>
