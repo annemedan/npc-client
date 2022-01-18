@@ -70,24 +70,7 @@ function CartPage() {
     }
   };
 
-  return user.isStore ? (
-    <div className="cart-page">
-      <h2>Hey, you have a store, what are you doing here?</h2>
-      <h3>
-        {" "}
-        Since you like us so much, try a <i>buyer</i> account!
-        <p>
-          {" "}
-          Logout and create one on our{" "}
-          <span className="back-to-signup">
-            {" "}
-            <Link to="/signup">Sign Up</Link>
-          </span>{" "}
-          page!
-        </p>
-      </h3>
-    </div>
-  ) : (
+  return (
     <div className="cart-page">
       <h2>Your current cart:</h2>
       <div className="cart-box">
